@@ -11,6 +11,7 @@ provider:
 
   environment:
     ALLOW_CIDR:       ${env:ALLOW_CIDR, 'x.x.x.x'}
+    REDIS_IP:         ${env:REDIS_IP, 'r.e.d.i.s'}
     REDIS_HOST:       ${env:REDIS_HOST, 'redis.url'}
     REDIS_PORT:       ${env:REDIS_PORT, '6379'}
     REDIS_QUERY_KEY:  ${env:REDIS_QUERY_KEY, 'group:foo:key'}
