@@ -15,8 +15,9 @@ AWS_PARAMS=AWS_PROFILE=$(profile) AWS_DEFAULT_REGION=${region}
 
 vpc_id := $(shell ${AWS_PARAMS} aws ec2 describe-vpcs --filters "Name=tag:Environment,Values=${vpc_env}" --query Vpcs[0].VpcId --output text)
 subnet_ids := $(shell ${AWS_PARAMS} aws ec2 describe-subnets --filters "Name=vpc-id,Values=${vpc_id}" --query Subnets[*].SubnetId --output text)
+redis_ip := $(shell dig +short ${redis_host})
 
-SCRIPT_PARAMS=ALLOW_CIDR="${allow_cidr}" REDIS_HOST="${redis_host}" REDIS_QUERY_KEY="${redis_query_key}" REDIS_QUERY_USER="${redis_query_user}"
+SCRIPT_PARAMS=ALLOW_CIDR="${allow_cidr}" REDIS_HOST="${redis_ip}" REDIS_QUERY_KEY="${redis_query_key}" REDIS_QUERY_USER="${redis_query_user}"
 LAMBDA_PARAMS=ENV=${env} VPC_ID=${vpc_id} VPC_SUBNETS="${subnet_ids}" ${SCRIPT_PARAMS}
 
 # environment
