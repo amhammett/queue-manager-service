@@ -1,0 +1,8 @@
+-r prod.txt
+
+# test
+flake8
+isort
+pytest
+pytest-coverage
+pytest-spec
